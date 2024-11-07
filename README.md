@@ -1,1 +1,5 @@
-https://github.com/Hawk5778/Bingo_Card.git
+# Bingo Card
+
+This program is compromise version.
+
+It's has many bugs and fixes.

@@ -3,6 +3,7 @@ from random import randint
 import tkinter as tk
 import tkinter.font as tkFont
 import hashlib
+import sys
 
 random_list = []
 hash_list = []
@@ -22,9 +23,15 @@ class card:
     def creat_hash():
         list_text =  ''.join(map(str, random_list))
         hash_md5 = hashlib.md5(list_text.encode()).hexdigest()
-        #if 
+        if set(hash_md5).issubset(hash_list) == True:
+            card.create_list()
+            sys.exit()
         hash_list.append(hash_md5)
         print(hash_list)
+
+    # def view_hash():
+    #     window.label.config(text=hash_list)
+
 
     def change_color(button):
         def color():
@@ -75,17 +82,20 @@ class card:
 
 class window:
     label = None
+    label1 = None
 
     def main_window():
         main_window = tk.Tk()
 
         main_window.title("BINGO System")
-        main_window.geometry("400x300")
+        main_window.geometry("400x100")
 
-        tk.Label(main_window, text="BINGO System").pack()
+        tk.Label(main_window, text="BINGO System", font=("Arial", 25)).pack()
+        #window.label1 = tk.Label(main_window, text="")
+        #window.label1.place(x=200, y=200)
 
-        tk.Button(text="creat new card", command = window.sub_window).pack()
-        tk.Button(text="view hash list").pack()
+        tk.Button(text="creat new card", command = window.sub_window, width = 20).pack()
+        #tk.Button(text="view hash list",command = card.view_hash).pack()
 
         main_window.mainloop()
 
